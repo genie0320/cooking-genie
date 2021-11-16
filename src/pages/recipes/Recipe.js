@@ -13,11 +13,16 @@ export default function Recipe({ recipes }) {
             {error && <p className='error'>{error}</p>}
             {isPending && <p className='Loading'>Loading...</p>}
             {recipe &&
-                <div className='recipe'>
-                    <h2>{recipe.title}</h2>
-                    <p>{recipe.ingredients}</p>
-                    <p>{recipe.method}</p>
-                </div>}
+                <>
+                    <h2 className='page-title'>{recipe.title}</h2>
+                    <p>{recipe.cookingTime} to cook.</p>
+                    <ul>
+                        {recipe.ingredients.map(ingItem => (
+                            <li key={ingItem}>{ingItem}</li>
+                        ))}
+                    </ul>
+                    <p className='method'>{recipe.method}</p>
+                </>}
 
         </ div >
     )
