@@ -24,3 +24,10 @@
     text-decoration: none;
     margin: 20px auto;
   }
+  .ing {
+    display: flex;
+    align-items: center;
+  }
+  .ing button {
+    margin: 0 0 0 10px;
+  }
