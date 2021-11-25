@@ -8,6 +8,7 @@ export default function Create() {
     const [ingredients, setIngredients] = useState([])
     const [newIng, setNewIng] = useState('')
     const ingInput = useRef(null)
+    // ref가 걸려 있는 해당 엘리먼트를 가지게 된다. 
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -18,10 +19,13 @@ export default function Create() {
         e.preventDefault()
 
         const ing = newIng.trim()
+        // 가져온 값에서 공백 없애기
         if (ing && !ingredients.includes(ing)) {
             setIngredients(prevIng => [...prevIng, newIng])
             setNewIng('')
+            // 입력 후 해당 입력란 비워주기
             ingInput.current.focus()
+            // 입력 후 해당 입력란으로 다시 포커싱해주기. useRef()로 사용할 수 있다.
         }
     }
     return (
@@ -45,7 +49,7 @@ export default function Create() {
                         <button onClick={handleClick}>add</button>
                     </div>
                 </label>
-                <span>Ingredients :  {ingredients.map((ing) => <em key={ing}>{ing}, </em>)}</span>
+                <p>Ingredients :  {ingredients.map((ing) => <em key={ing}>{ing}, </em>)}</p>
 
                 <label>
                     <span>Method</span>
