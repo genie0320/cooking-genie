@@ -1,18 +1,25 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { useHistory } from 'react-router'
+import { useFetch } from '../../hooks/useFetch'
 import './Create.css'
 
 export default function Create() {
     const [title, setTitle] = useState('')
     const [method, setMethod] = useState('')
-    const [cookingTime, setCookingTime] = useState('')
     const [ingredients, setIngredients] = useState([])
+    const [cookingTime, setCookingTime] = useState('')
     const [newIng, setNewIng] = useState('')
     const ingInput = useRef(null)
     // ref가 걸려 있는 해당 엘리먼트를 가지게 된다. 
+    const { postData, data, error } = useFetch('http://localhost:3000/recipes', 'POST')
+    // 나는 postData()를 실행할건데, data는 이거야. 그리고 error 나면 알려줘.
+    const history = useHistory()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(title, cookingTime, ingredients, method)
+        // console.log(title, cookingTime, ingredients, method)
+        postData({ title, ingredients, method, cookingTime: cookingTime + ' minites' })
+        // id는 json-server에서 자동으로 부여하니 전달할 필요 없다!
     }
 
     const handleClick = (e) => {
@@ -28,6 +35,13 @@ export default function Create() {
             // 입력 후 해당 입력란으로 다시 포커싱해주기. useRef()로 사용할 수 있다.
         }
     }
+
+    useEffect(() => {
+        if (data) {
+            history.push('/')
+        }
+    }, [data])
+
     return (
         <div className='addRecipe'>
             <h2>Add new recipe</h2>
