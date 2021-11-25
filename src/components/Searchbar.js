@@ -19,6 +19,7 @@ export default function Searchbar() {
         e.preventDefault()
         // ' ' 가 아니다. ` ` 다!
         history.push(`/search?q=${keyword}`)
+
     }
     return (
         <div>
