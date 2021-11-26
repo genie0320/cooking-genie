@@ -8,6 +8,7 @@ ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider>
       <App />
+      {/* 이로서 <App />내에 포함된 모든 콤포넌트들은 Context를 활용할 수 있게 된다. */}
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
